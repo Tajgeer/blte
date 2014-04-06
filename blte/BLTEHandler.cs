@@ -119,8 +119,8 @@ namespace blte
 						if (chunks [i].data.Length - 1 != chunks [i].decompSize) {
 							Console.WriteLine ("Possible error (1) !");
 						}
-						if (ext == "out")
-							f.Write (chunks [i].data, 1, chunks [i].decompSize);
+
+						f.Write (chunks [i].data, 1, chunks [i].decompSize);
 					}
 					break;
 				case 0x5A:
@@ -130,8 +130,8 @@ namespace blte
 						if ((i == 0 || i == 0)) {
 							ext = GetFileExt (dec, 0);
 						}
-						if (ext == "out")
-							f.Write (dec, 0, dec.Length);
+
+						f.Write (dec, 0, dec.Length);
 					}
 					break;
 				default:
