@@ -1,0 +1,15 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="blte/Program.cs">
+    <Files>
+      <File FileName="blte/Program.cs" Line="33" Column="4" />
+      <File FileName="blte/MNDXHandler.cs" Line="5" Column="15" />
+      <File FileName="blte/MARHandler.cs" Line="8" Column="15" />
+      <File FileName="blte/BLTEHandler.cs" Line="58" Column="42" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

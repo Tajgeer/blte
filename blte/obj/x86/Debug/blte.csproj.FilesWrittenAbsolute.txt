@@ -1,0 +1,5 @@
+/Users/maku/Projects/blte/blte/obj/x86/Debug/.NETFramework,Version=v4.0.AssemblyAttribute.cs
+/Users/maku/Projects/blte/blte/bin/Debug/blte.exe.mdb
+/Users/maku/Projects/blte/blte/bin/Debug/blte.exe
+/Users/maku/Projects/blte/blte/obj/x86/Debug/blte.exe
+/Users/maku/Projects/blte/blte/obj/x86/Debug/blte.exe.mdb
