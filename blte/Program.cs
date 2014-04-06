@@ -13,8 +13,28 @@ namespace blte
 		{
 			if (args.Length < 1)
 			{
-				Console.WriteLine("Usage: <input file>");
+				Console.WriteLine("Usage: <input file> [output_dir] [ext]");
+				Console.WriteLine("Input file: data.0xx file");
+				Console.WriteLine("ext: if you want to read only one type of files, specify them here");
+
+				Console.WriteLine ("example: \n blte data.022 out m2");
+
 				return;
+			}
+			string output;
+
+			if (args.Length == 2) {
+				output = args [1];
+			} else {
+				output = "out";
+			}
+
+			string ext;
+
+			if (args.Length == 3) {
+				ext = args [2];
+			} else {
+				ext = null;
 			}
 
 			if (!File.Exists (args [0])) {
@@ -24,6 +44,8 @@ namespace blte
 			var file = File.OpenRead (args[0]);
 			var br = new BinaryReader (file, Encoding.ASCII);
 
+			string sExt = (ext == null) ? "all" : ext;
+			Console.WriteLine("Extracting {0} files from {1}", sExt, args[0]);
 
 			while (br.BaseStream.Position != br.BaseStream.Length) {
 
@@ -36,7 +58,7 @@ namespace blte
 				int unk3 = br.ReadInt32 ();
 
 				BLTEHandler h = new BLTEHandler(br);
-				h.ExtractData("out", unkHash.ToHexString(), size);
+				h.ExtractData(output, unkHash.ToHexString(), size, ext);
 			}
 		}
 	}

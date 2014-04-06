@@ -40,7 +40,7 @@ namespace blte
 			           Position; // For debugging info;
 		}
 
-		public void ExtractData (string path, string name, int size)
+		public void ExtractData (string path, string name, int size, string onlyExt)
 		{
 			int magic = reader.ReadInt32BE (); // BLTE (raw)
 
@@ -88,11 +88,11 @@ namespace blte
 				}
 			}
 
-			string ext = "out";
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
 
-//            if (!Directory.Exists(path))
-//                Directory.CreateDirectory(path);
-//
+			string ext = ".tmp";
+
 			string tmpName = path + "/" + name + ext;
 			var f = File.Open (tmpName, FileMode.Create);
 
@@ -142,8 +142,8 @@ namespace blte
 
 			string finalName = path + "/" + name + "." + ext;
 
-			if (ext == "out") {
-				Console.WriteLine (finalName);
+			if (onlyExt == null || ext == onlyExt) {
+				Console.WriteLine ("Writing file {0}", finalName);
 				f.Close ();
 				if (File.Exists (finalName))
 					File.Delete (finalName);
@@ -266,15 +266,13 @@ namespace blte
 			else if (data [start + 0] == 0x4d && data [start + 1] == 0x44 && data [start + 2] == 0x32)
 				return "m2";
 			else if (data [start + 0] == 0x57 && data [start + 1] == 0x44 && data [start + 2] == 0x42 && data [start + 3] == 0x32)
-				return "wdb";
+				return "wdb2";
 			else if (data [start + 0] == 0x00 && data [start + 1] == 0x00 && data [start + 2] == 0x00)
 				return "unk"; // can not be guessed;
 			else {
 				byte[] header = new byte[3];
 				Array.Copy (data, start, header, 0, 3);
-
-				Console.WriteLine ("Unknown File: {0}", header.ToHexString ());
-				return "out";
+				return "unk";
 			}
 		}
 	}
