@@ -11,7 +11,17 @@ namespace blte
 	{
 		static void Main(string[] args)
 		{
-			var file = File.OpenRead ("data.001");
+			if (args.Length < 1)
+			{
+				Console.WriteLine("Usage: <input file>");
+				return;
+			}
+
+			if (!File.Exists (args [0])) {
+				Console.WriteLine ("Can't open file {0}", args [0]);
+			}
+
+			var file = File.OpenRead (args[0]);
 			var br = new BinaryReader (file, Encoding.ASCII);
 
 
@@ -19,15 +29,11 @@ namespace blte
 
 				long start = br.BaseStream.Position;
 
-				Console.WriteLine ("Parsing file at: {0}",start);
-
 				byte[] unkHash = br.ReadBytes(16);
 				int size = br.ReadInt32();
 				int unk1 = br.ReadInt32 ();
 				int unk2 = br.ReadInt16 ();
 				int unk3 = br.ReadInt32 ();
-
-				Console.WriteLine ("Size is {0} so next file is expected at {1}", size, start + size);
 
 				BLTEHandler h = new BLTEHandler(br);
 				h.ExtractData("out", unkHash.ToHexString(), size);
